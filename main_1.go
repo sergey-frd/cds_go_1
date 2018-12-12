@@ -45,6 +45,7 @@ func handlingCountryLine(sheet_Name string,
 //---------------------------------------------------------------
 func main() {
 
+    p := fmt.Println
 
     var data            = map[string]map[string]string{}
     var Ow_Um_Map       = make(map[string]float64)

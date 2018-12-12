@@ -14,9 +14,10 @@ import (
     //"runtime"
     "encoding/json"
     //"encoding/gob"
+    "path/filepath"
 
-    L "data_xcls/lib"
-    S "data_xcls/config"
+    L "cds_go_1/lib"
+    S "cds_go_1/config"
 
 )
 
@@ -27,10 +28,15 @@ func __err_panic(err error) {
 		panic(err)
 	}
 }
-//------------------------------------------------------------
-func Demo_Xcls(jsonFilePath string, byteValues []byte) {
 
-    fmt.Println("Demo_Xcls Started")
+//------------------------------------------------------------
+func Load_Xcls(proj_dir string, byteValues []byte) {
+}
+//------------------------------------------------------------
+func Demo_Xcls(proj_dir string, byteValues []byte) {
+
+    p := fmt.Println
+    fmt.Println("Load_Xcls Started")
 
     var ti   S.Time_Interval_STC
     var nb   S.Neighborhoods_STC
@@ -56,15 +62,38 @@ func Demo_Xcls(jsonFilePath string, byteValues []byte) {
     var val                string
 
 
-
     //project_name := fastjson.GetString(byteValues, "Base", "project_name")
     //fmt.Printf("project_name = %s\n", project_name)
 
-    excelFileName := fastjson.GetString(byteValues, "Base", "excelFileName")
-    //fmt.Printf("excelFileName = %s\n", excelFileName)
+
+    excel_Name := fastjson.GetString(byteValues, "Base", "excel_Name")
+
+
+    proj_dirX, err := os.Getwd();  __err_panic(err) 
+    p("proj_dirX =", proj_dirX)
+
+    //proj_dir, err := os.Getwd();  __err_panic(err) 
+    p("proj_dir proj_dir =", proj_dir)
+	//p(filepath.Join(proj_dir,"tbl", "cds_db_0_10.xlsx"))
+
+    //excelFileName := filepath.Join(proj_dir,"tbl", "cds_db_0_10.xlsx")
+    excelFileName := filepath.Join(proj_dir,"tbl", excel_Name)
+
+    //excelFileName := fastjson.GetString(byteValues, "Base", "excelFileName")
+    fmt.Printf("proj_dir excelFileName = %s\n", excelFileName)
+
+
+
 
     dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
-    //fmt.Printf("dbFileName = %s\n", dbFileName)
+    fmt.Printf("dbFileName = %s\n", dbFileName)
+
+
+
+    //    err = L.LoadDict2(byteValues, data, "Free_Slots");  __err_panic(err)     
+
+
+
 
     //CASE_XCLS_2_DB := fastjson.GetString(byteValues, "Base", "CASE_XCLS_2_DB")
     //fmt.Printf("CASE_XCLS_2_DB = %s\n", CASE_XCLS_2_DB)
@@ -83,8 +112,8 @@ func Demo_Xcls(jsonFilePath string, byteValues []byte) {
         log.Printf("file %s stat error: %v", dbFileName, err)
     }
 
-    fmt.Println("call L.Demo() START")
-    L.Demo(dbFileName,byteValues)
+    // fmt.Println("call L.Demo() START")
+    // L.Demo(dbFileName,byteValues)
 
     //db, err := bolt.Open(dbFile, 0600, nil)
     //db, err := bolt.Open(dbFileName, 0600, nil)

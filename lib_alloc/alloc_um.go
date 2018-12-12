@@ -19,8 +19,8 @@ import (
 //  "time"
 //  "math/rand"
 //
-//    L "data_xcls/lib"
-    S "data_xcls/config"
+//    L "cds_go_1/lib"
+    S "cds_go_1/config"
 )
 //---------------------------------------------------------------
 func __err_panic(err error) {

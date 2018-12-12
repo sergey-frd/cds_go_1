@@ -7,14 +7,15 @@ import (
     "fmt"
     "github.com/valyala/fastjson"
     "io/ioutil"
-
-    L "data_xcls/lib"
-    X "data_xcls/lib_xcls"
-    A "data_xcls/lib_alloc"
+    //"path"
+    "path/filepath"
+    L "cds_go_1/lib"
+    X "cds_go_1/lib_xcls"
+    A "cds_go_1/lib_alloc"
 
     //"encoding/json"
     //"encoding/gob"
-    //S "data_xcls/config"
+    //S "cds_go_1/config"
 
 )
 
@@ -47,6 +48,7 @@ func main() {
 
     p := fmt.Println
 
+
     var data            = map[string]map[string]string{}
     var Ow_Um_Map       = make(map[string]float64)
     var Ow_UmNbDsTi_Map = make(map[string]float64)
@@ -55,8 +57,22 @@ func main() {
     var Free_Slots_Map  = make(map[string]float64)
 
 
-    jsonFilePath := "c:\\Users\\user\\go\\src\\data_xcls\\config\\t_4.json"
-    fmt.Println("jsonFilePath =", jsonFilePath)
+    proj_dir, err := os.Getwd();  __err_panic(err) 
+    p("proj_dir =", proj_dir)
+
+    // dir_proj_dir :=  filepath.Dir (proj_dir) 
+    // p("dir_proj_dir =", dir_proj_dir)
+
+	p(filepath.Join(proj_dir,"config", "t_4.json"))
+
+    //jsonFilePath := "c:\\Users\\user\\go\\src\\data_xcls\\config\\t_4.json"
+    jsonFilePath := filepath.Join(proj_dir,"config", "t_4.json")
+
+    //fmt.Println("jsonFilePath =", jsonFilePath)
+
+
+    //============================================  
+    //return
 
     jsonFile, err := os.Open(jsonFilePath)
     if err != nil {
@@ -86,10 +102,11 @@ func main() {
     //L.Demo(dbFileName,byteValues)
     //L.DemoGenDB(byteValues)
 
-
+    //------------------------------------------------------------------------------
     if fastjson.GetString(byteValues, "Base", "CASE_XCLS_2_DB") == "Y" {
         //fmt.Println("call X.Demo_Xcls(jsonFilePath) START")
-        X.Demo_Xcls(jsonFilePath, byteValues)
+        X.Demo_Xcls(proj_dir, byteValues)
+        //X.Load_Xcls(proj_dir, byteValues)
     }
 
     //------------------------------------------------------------------------------
@@ -102,7 +119,6 @@ func main() {
     	L.Buckets(dbFileName)
 
     }
-
 
     //------------------------------------------------------------------------------
     CASE_LOAD_DICT := fastjson.GetString(byteValues, "Base", "CASE_LOAD_DICT")

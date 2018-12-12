@@ -20,7 +20,7 @@ import (
 //  "time"
 //  "math/rand"
 //
-//    S "data_xcls/config"
+//    S "cds_go_1/config"
 
 )
 

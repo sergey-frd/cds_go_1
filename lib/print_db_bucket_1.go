@@ -12,10 +12,10 @@ import (
 
     //"encoding/gob"
 
-    //L "data_xcls/lib"
+    //L "cds_go_1/lib"
 
     //"encoding/json"
-    //S "data_xcls/config"
+    //S "cds_go_1/config"
 
     // "time"
     // "math/rand"

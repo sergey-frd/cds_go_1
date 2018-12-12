@@ -24,13 +24,13 @@ import (
 
 //----------------------------------------------
 func Get_keys_City(byteValues  []byte, 
-    data            map[string]map[string]string,
-    um              S.User_Media_STC,
-    Ow_Um_Map       map[string]float64,
-    Ow_UmNbDsTi_Map map[string]float64,
-    Ow_UmNbDs_Map   map[string]float64,
-    Payd_Slots_Map  map[string]float64,
-    Free_Slots_Map  map[string]float64,
+        data            map[string]map[string]string,
+        um              S.User_Media_STC,
+        Ow_Um_Map       map[string]float64,
+        Ow_UmNbDsTi_Map map[string]float64,
+        Ow_UmNbDs_Map   map[string]float64,
+        Payd_Slots_Map  map[string]float64,
+        Free_Slots_Map  map[string]float64,
      ) []string {
 
 
@@ -45,23 +45,10 @@ func Get_keys_City(byteValues  []byte,
     keys_City  := []string{}
     //keys_Nb    := []string{}
 
-
-
-
-
-
     //............................................................
-    Clip_4_ALL_Country := fastjson.GetInt(byteValues, "Base", "Clip_4_ALL_Country")
-    //fmt.Println("Clip_4_ALL_Country =",Clip_4_ALL_Country)
-
-    Clip_Code_Country := fastjson.GetString(byteValues, "Base", "Clip_Code_Country")
-    //fmt.Println("Clip_Code_Country =",Clip_Code_Country)
-
-
-    Clip_Code_City := fastjson.GetString(byteValues, "Base", "Clip_Code_City")
-    //fmt.Println("Clip_Code_City =",Clip_Code_City)
-
-
+    Clip_4_ALL_Country := fastjson.GetInt(byteValues,    "Base", "Clip_4_ALL_Country")
+    Clip_Code_Country  := fastjson.GetString(byteValues, "Base", "Clip_Code_Country")
+    Clip_Code_City     := fastjson.GetString(byteValues, "Base", "Clip_Code_City")
 
     nn := 0
     //for key, _ := range data["City"] {
@@ -96,7 +83,7 @@ func Get_keys_City(byteValues  []byte,
                 Ow_UmNbDsTi_Map ,
                 Ow_UmNbDs_Map   ,
                 Payd_Slots_Map,
-            Free_Slots_Map  ,
+                Free_Slots_Map  ,
                 )
 
             __err_panic(err)

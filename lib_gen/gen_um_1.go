@@ -1,7 +1,8 @@
-package lib
+package lib_gen
 
 import (   
     "fmt"
+    "log"
 //    "github.com/valyala/fastjson"
     "os" 
     "github.com/boltdb/bolt"
@@ -17,28 +18,29 @@ import (
 //  "time"
 //  "math/rand"
 //
+    L "cds_go_1/lib"
     S "cds_go_1/config"
 
 )
 
+//---------------------------------------------------------------
+func __err_panic(err error) {
+	if err != nil {
+		log.Fatal(err)
+		panic(err)
+	}
+}
 //----------------------------------------------
-func Gen_UmNbDtTi_Bucket(byteValues  []byte, 
+func Gen_Um(byteValues  []byte, 
     data            map[string]map[string]string,
-    Ow_Um_Map       map[string]float64,
-    Ow_UmNbDsTi_Map map[string]float64,
-    Ow_UmNbDs_Map   map[string]float64,
-    Payd_Slots_Map  map[string]float64,
-    Free_Slots_Map  map[string]float64,
     ) error {
 
-    //fmt.Println("Gen_UmNbDtTi_Bucket Ow_Um_Map =", Ow_Um_Map)
-
-    var bucket_Name string     = "User_Media" 
-    var err         error
-    var um          S.User_Media_STC
+    var err    error
+    var um   S.User_Media_STC
+    //var ps     S.Um_NbDsTiSl_STC  // Payd_Slots
 
     //............................................................
-    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
+    dbFileName, err := L.GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return err
@@ -52,11 +54,12 @@ func Gen_UmNbDtTi_Bucket(byteValues  []byte,
     defer db.Close()
 
     //fmt.Println(" ----------  Open ---------- ")
+    var sheet_Name string     = "User_Media" 
     err = db.View(func(tx *bolt.Tx) error {
 
-			sheet_Name := string(bucket_Name)
+			//sheet_Name := string(bucket_Name)
             //fmt.Println(string(name))
-			fmt.Printf(" *** Print_DB_Bucket %s *** \n", sheet_Name)
+			//fmt.Printf(" *** Print_DB_Bucket %s *** \n", sheet_Name)
 				 
 			//data[sheet_Name] = make(map[string]string)
 			err = db.View(func(tx *bolt.Tx) error {
@@ -86,24 +89,24 @@ func Gen_UmNbDtTi_Bucket(byteValues  []byte,
                     if err != nil {
                         fmt.Println("There was an error:", err)
                     }
-                    //fmt.Println("um =", um)
+                    fmt.Println("um =", um)
 
                     //.................................................
-                    //keys_City := Get_keys_City(byteValues, 
-                    Get_keys_City(byteValues, 
-                        data,
-                        um,
-                        Ow_Um_Map,
-                        Ow_UmNbDsTi_Map   ,
-                        Ow_UmNbDs_Map   ,
-                        Payd_Slots_Map,
-                        Free_Slots_Map  ,
-                        )
-
-                    //fmt.Println("keys_City =", keys_City)
-
-                    //!!!!!!!!!!
-                    //break
+                    // //keys_City := Get_keys_City(byteValues, 
+                    // Get_keys_City(byteValues, 
+                    //     data,
+                    //     um,
+                    //     Ow_Um_Map,
+                    //     Ow_UmNbDsTi_Map   ,
+                    //     Ow_UmNbDs_Map   ,
+                    //     Payd_Slots_Map,
+                    //     Free_Slots_Map  ,
+                    //     )
+                    // 
+                    // //fmt.Println("keys_City =", keys_City)
+                    // 
+                    // //!!!!!!!!!!
+                    // //break
 
 
 				}
@@ -118,6 +121,6 @@ func Gen_UmNbDtTi_Bucket(byteValues  []byte,
 
     return err
 
-}
+} //func Gen_Um(byteValues  []byte, 
 
 

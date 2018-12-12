@@ -72,16 +72,14 @@ func Alloc_Um(byteValues  []byte,
         }
         fmt.Println("um =", um)
 
-
-
         ow_total, err := Alloc_Ow(byteValues, 
                          data ,
                          um ,
-            ); __err_panic(err) 
+        ); __err_panic(err) 
 
 
         //fmt.Println("***************",ow_total)
-        fmt.Println("########## um TOTAL",ow_total)
+        fmt.Println("um ***** TOTAL",ow_total)
         //total += ow_total
 
         //!!!!!!!!!!!!!!!!!!!!

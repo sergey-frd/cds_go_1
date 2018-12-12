@@ -6,7 +6,7 @@ import (
     "os" 
 	"errors"
 //	"log"
-    "github.com/valyala/fastjson"
+
     // "github.com/tealeg/xlsx"
 	// "io/ioutil"
 
@@ -15,10 +15,14 @@ import (
     //L "cds_go_1/lib"
 
     //"encoding/json"
-    //S "cds_go_1/config"
 
     // "time"
     // "math/rand"
+
+//    "path/filepath"
+//    "github.com/valyala/fastjson"
+//    L "cds_go_1/lib"
+    //S "cds_go_1/config"
 
 )
 
@@ -26,7 +30,8 @@ import (
 func Print_DB_Bucket(byteValues []byte,  bucket_Name string) error {
 
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
+
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return err

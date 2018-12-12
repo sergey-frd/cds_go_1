@@ -7,6 +7,7 @@ import (
 	"errors"
 	"log"
     "github.com/valyala/fastjson"
+    "path/filepath"
     // "github.com/tealeg/xlsx"
 	// "io/ioutil"
 
@@ -35,6 +36,27 @@ import (
 //     return rand.Intn(max - min) + min
 // }
 
+//------------------------------------------------------------
+func GetExcelFileName( byteValues []byte) (excelFileName string, err error) {
+
+    excel_Name := fastjson.GetString(byteValues, "Base", "excel_Name")
+    proj_dir, err := os.Getwd();  __err_panic(err) 
+    excelFileName = filepath.Join(proj_dir,"tbl", excel_Name)
+
+	return excelFileName, err
+
+}
+
+//------------------------------------------------------------
+func GetDbName( byteValues []byte) (dbFileName string, err error) {
+
+    db_Name := fastjson.GetString(byteValues, "Base", "db_Name")
+    proj_dir, err := os.Getwd();  __err_panic(err) 
+    dbFileName = filepath.Join(proj_dir,"db", db_Name)
+
+	return dbFileName, err
+
+}
 
 //---------------------------------------------------------------
 func __err_panic(err error) {

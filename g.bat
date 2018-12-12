@@ -12,8 +12,8 @@ SET TOOL_COMMON=%cpss_tool%\common
 set SCRIPT_DIR=%WORK_PATH%\tools\admin
 SET WORK_DRIVE=%WORK_PATH:~0,2%
 
-echo  go run main_1.go
-      go run main_1.go
+echo go run main_1.go
+     go run main_1.go
 
 :: %WORK_DRIVE%
 :: cd %WORK_PATH%

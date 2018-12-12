@@ -7,14 +7,14 @@ import (
 //	 "errors"
 	 "log"
      "github.com/tealeg/xlsx"
-     "github.com/valyala/fastjson"
+     //"github.com/valyala/fastjson"
 //	 "io/ioutil"
 
     //"bytes"
     //"runtime"
     "encoding/json"
     //"encoding/gob"
-    "path/filepath"
+//    "path/filepath"
 
     L "cds_go_1/lib"
     S "cds_go_1/config"
@@ -29,11 +29,10 @@ func __err_panic(err error) {
 	}
 }
 
+
 //------------------------------------------------------------
-func Load_Xcls(proj_dir string, byteValues []byte) {
-}
-//------------------------------------------------------------
-func Demo_Xcls(proj_dir string, byteValues []byte) {
+//func Load_Xcls(proj_dir string, byteValues []byte) {
+func Load_Xcls( byteValues []byte) {
 
     p := fmt.Println
     fmt.Println("Load_Xcls Started")
@@ -66,37 +65,21 @@ func Demo_Xcls(proj_dir string, byteValues []byte) {
     //fmt.Printf("project_name = %s\n", project_name)
 
 
-    excel_Name := fastjson.GetString(byteValues, "Base", "excel_Name")
 
 
-    proj_dirX, err := os.Getwd();  __err_panic(err) 
-    p("proj_dirX =", proj_dirX)
-
-    //proj_dir, err := os.Getwd();  __err_panic(err) 
-    p("proj_dir proj_dir =", proj_dir)
-	//p(filepath.Join(proj_dir,"tbl", "cds_db_0_10.xlsx"))
-
-    //excelFileName := filepath.Join(proj_dir,"tbl", "cds_db_0_10.xlsx")
-    excelFileName := filepath.Join(proj_dir,"tbl", excel_Name)
-
-    //excelFileName := fastjson.GetString(byteValues, "Base", "excelFileName")
-    fmt.Printf("proj_dir excelFileName = %s\n", excelFileName)
+    // proj_dir, err := os.Getwd();  __err_panic(err) 
+    // p("proj_dir proj_dir =", proj_dir)
+    // excelFileName := filepath.Join(proj_dir,"tbl", excel_Name)
 
 
 
+    //dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := L.GetDbName(byteValues);  __err_panic(err) 
+    p("dbFileName =", dbFileName)
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
-    fmt.Printf("dbFileName = %s\n", dbFileName)
+    excelFileName, err := L.GetExcelFileName(byteValues);  __err_panic(err) 
+    //fmt.Printf("proj_dir excelFileName = %s\n", excelFileName)
 
-
-
-    //    err = L.LoadDict2(byteValues, data, "Free_Slots");  __err_panic(err)     
-
-
-
-
-    //CASE_XCLS_2_DB := fastjson.GetString(byteValues, "Base", "CASE_XCLS_2_DB")
-    //fmt.Printf("CASE_XCLS_2_DB = %s\n", CASE_XCLS_2_DB)
 
     fmt.Println(" ----------  CASE_XCLS_2_DB ---------- ")
     xlFile, err := xlsx.OpenFile(excelFileName)

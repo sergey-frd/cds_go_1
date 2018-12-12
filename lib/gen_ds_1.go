@@ -19,6 +19,7 @@ import (
     "math/rand"
 
     S "cds_go_1/config"
+    //L "cds_go_1/lib"
 
 )
 
@@ -42,7 +43,7 @@ func Gen_Ds_Bucket(byteValues  []byte,
 
 
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         __err_panic(err)
 

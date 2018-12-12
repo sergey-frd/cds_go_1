@@ -9,6 +9,7 @@ import (
     "io/ioutil"
     //"path"
     "path/filepath"
+
     L "cds_go_1/lib"
     X "cds_go_1/lib_xcls"
     A "cds_go_1/lib_alloc"
@@ -94,9 +95,11 @@ func main() {
     //excelFileName := fastjson.GetString(byteValues, "Base", "excelFileName")
     //fmt.Printf("excelFileName = %s\n", excelFileName)
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    //dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    //db_Name := fastjson.GetString(byteValues, "Base", "db_Name")
     //fmt.Printf("dbFileName = %s\n", dbFileName)
 
+    dbFileName, err := L.GetDbName(byteValues);  __err_panic(err) 
 
     //fmt.Println("call L.Demo() START")
     //L.Demo(dbFileName,byteValues)
@@ -105,8 +108,8 @@ func main() {
     //------------------------------------------------------------------------------
     if fastjson.GetString(byteValues, "Base", "CASE_XCLS_2_DB") == "Y" {
         //fmt.Println("call X.Demo_Xcls(jsonFilePath) START")
-        X.Demo_Xcls(proj_dir, byteValues)
-        //X.Load_Xcls(proj_dir, byteValues)
+        // X.Load_Xcls(proj_dir, byteValues)
+        X.Load_Xcls( byteValues)
     }
 
     //------------------------------------------------------------------------------

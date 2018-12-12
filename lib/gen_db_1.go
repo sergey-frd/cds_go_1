@@ -19,6 +19,7 @@ import (
     "math/rand"
 
     S "cds_go_1/config"
+    //L "cds_go_1/lib"
 
 )
 //---------------------------------------------------------------
@@ -49,7 +50,7 @@ func GenAllFiles(byteValues []byte) {
     // myrand = random (1, 6)
     // fmt.Println (myrand)
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return

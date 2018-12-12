@@ -1,5 +1,8 @@
 package strct
 
+import (
+        "time"
+)
 
 //.............................
 type Ow_Um_KEY   struct {
@@ -72,6 +75,9 @@ type User_Media_VAL   struct {
     Media_Name  string
     Media_Cost  string
     Media_Slots string
+    Start_time  time.Time
+    End_time    time.Time
+
 }
 
 type User_Media_STC   struct {

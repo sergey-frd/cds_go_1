@@ -2,7 +2,7 @@ package lib
 
 import (   
     "fmt"
-    "github.com/valyala/fastjson"
+//    "github.com/valyala/fastjson"
     "os" 
     "github.com/boltdb/bolt"
     "errors"
@@ -42,7 +42,7 @@ func Gen_UmNbDtTi_Bucket(byteValues  []byte,
 
 
     //............................................................
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return err

@@ -167,7 +167,7 @@ func Buckets(path string) {
 func LoadDict(byteValues []byte, data map[string]map[string]string) error {
 
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return err
@@ -224,7 +224,7 @@ func LoadDict(byteValues []byte, data map[string]map[string]string) error {
 func LoadDict2(byteValues []byte, data map[string]map[string]string, bucket_Name string) error {
 
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return err
@@ -286,7 +286,7 @@ func LoadDict_Dbg(byteValues []byte,
 
     fmt.Println("LoadDict_Dbg bucket_Name =", bucket_Name)
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         fmt.Println(err)
         return err

@@ -7,7 +7,7 @@ import (
     // "errors"
 //    "strconv"
     // "io/ioutil"
-    "github.com/valyala/fastjson"
+//    "github.com/valyala/fastjson"
 
     //"bytes"
 
@@ -32,7 +32,7 @@ func Save_Map(byteValues  []byte,
 
     // fmt.Println("Save_Map bucket_Name =", bucket_Name)
 
-    dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
+    dbFileName, err := GetDbName(byteValues);  __err_panic(err) 
     if _, err := os.Stat(dbFileName); os.IsNotExist(err) {
         __err_panic(err)
 

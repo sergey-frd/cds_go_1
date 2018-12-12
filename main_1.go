@@ -84,21 +84,6 @@ func main() {
     // read our opened xmlFile as a byte array.
     byteValues, _ := ioutil.ReadAll(jsonFile)
 
-    // L.Gen_nb_us_ds_md_ti_detail(byteValues)
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // return
-
-
-    //project_name := fastjson.GetString(byteValues, "Base", "project_name")
-    //fmt.Printf("project_name = %s\n", project_name)
-
-    //excelFileName := fastjson.GetString(byteValues, "Base", "excelFileName")
-    //fmt.Printf("excelFileName = %s\n", excelFileName)
-
-    //dbFileName := fastjson.GetString(byteValues, "Base", "dbFileName")
-    //db_Name := fastjson.GetString(byteValues, "Base", "db_Name")
-    //fmt.Printf("dbFileName = %s\n", dbFileName)
-
     dbFileName, err := L.GetDbName(byteValues);  __err_panic(err) 
 
     //fmt.Println("call L.Demo() START")
@@ -154,12 +139,12 @@ func main() {
         //err = L.Print_DB_Bucket(byteValues, "Media")
         //__err_panic(err)
 
-        err = L.Gen_Um_Bucket(byteValues, "User_Media",data);        __err_panic(err)
-  
-        err = L.LoadDict2(byteValues, data, "User_Media");        __err_panic(err)
+        err = L.Gen_Um_Bucket(byteValues, "User_Media",data); __err_panic(err)
 
-        //err = L.Print_DB_Bucket(byteValues, "User_Media")
-        //__err_panic(err)
+        err = L.LoadDict2(byteValues, data, "User_Media");    __err_panic(err)
+
+        err = L.Print_DB_Bucket(byteValues, "User_Media");    __err_panic(err)
+
 
 
         L.Gen_UmNbDtTi_Bucket(byteValues, 

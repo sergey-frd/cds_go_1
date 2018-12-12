@@ -85,7 +85,7 @@ func Alloc_Um(byteValues  []byte,
         //total += ow_total
 
         //!!!!!!!!!!!!!!!!!!!!
-        //break
+        break
 
     }
 

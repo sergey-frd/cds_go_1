@@ -52,6 +52,9 @@ func Gen_Um_Bucket(byteValues  []byte,
     Clip_Budget_Min := fastjson.GetInt(byteValues, "Base", "Clip_Budget_Min")
     Clip_Budget_Max := fastjson.GetInt(byteValues, "Base", "Clip_Budget_Max")
 
+    Time_Add_Hour_Min := fastjson.GetInt(byteValues, "Base", "Time_Add_Hour_Min")
+    Time_Add_Hour_Max := fastjson.GetInt(byteValues, "Base", "Time_Add_Hour_Max")
+
     User_Counter := fastjson.GetInt(byteValues, "Base", "User_Counter")
     //fmt.Printf("User_Counter = %d\n", User_Counter)
 
@@ -147,14 +150,17 @@ func Gen_Um_Bucket(byteValues  []byte,
             //    data['Base']['Clip_Budget_Max'],\
             //    )*1000
 
-            rand.Seed(int64(time.Now().Nanosecond()))
-            //rand_Budget_Min := rand.Intn(Clip_Budget_Min)
-            rand_Budget     := rand.Intn(Clip_Budget_Max)
-            if rand_Budget < Clip_Budget_Min {
-                rand_Budget = Clip_Budget_Min
-            }
+            // rand.Seed(int64(time.Now().Nanosecond()))
+            // //rand_Budget_Min := rand.Intn(Clip_Budget_Min)
+            // rand_Budget     := rand.Intn(Clip_Budget_Max)
+            // if rand_Budget < Clip_Budget_Min {
+            //     rand_Budget = Clip_Budget_Min
+            // }
 
-            Media_Cost = strconv.Itoa(rand_Budget*1000)
+            //Media_Cost = strconv.Itoa(rand_Budget*1000)
+
+
+            Media_Cost = strconv.Itoa(random(Clip_Budget_Min, Clip_Budget_Max)*1000)
 
             um.UsMd.ID_User  = ID_User
             um.UsMd.ID_Media = ID_Media
@@ -164,7 +170,30 @@ func Gen_Um_Bucket(byteValues  []byte,
             um.UsMdVl.Media_Slots = ID_Media
 
 
-            //fmt.Println("um =",um)
+            currentTime := time.Now()   
+
+            // t := time.Now()
+            t := time.Date(
+                currentTime.Year() ,
+                currentTime.Month(),
+                currentTime.Day()  ,
+                0   ,
+                0   ,
+                0   ,
+                0   , 
+                time.UTC,
+                )
+
+            //um.UsMdVl.Start_time  = t.Add(time.Hour * 24 * random(1,5))
+            //um.UsMdVl.End_time    = t.Add(time.Hour * 24 * random(6,10))
+
+            t_Min := random(48,Time_Add_Hour_Min)
+            t_Max := random(Time_Add_Hour_Max - t_Min + 24, Time_Add_Hour_Max)
+
+            um.UsMdVl.Start_time  = t.Add(time.Hour * time.Duration(t_Min))
+            um.UsMdVl.End_time    = t.Add(time.Hour * time.Duration(t_Max))
+
+            // fmt.Println("um =",um)
 
             encoded, err := json.Marshal(um.UsMd)
             __err_panic(err)

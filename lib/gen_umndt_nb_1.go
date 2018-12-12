@@ -46,13 +46,13 @@ import (
     //keys_Ds    := []string{}
 
 
-    Clip_4_ALL_Nb := random(0, 2)
+    Clip_4_ALL_Nb := Random(0, 2)
     //fmt.Println("Clip_4_ALL_Nb =",Clip_4_ALL_Nb)
 
     Neighborhoods_Counter := fastjson.GetInt(byteValues, "Base", "Neighborhoods_Counter")
     //fmt.Println("Neighborhoods_Counter =",Neighborhoods_Counter)
 
-    Clip_Nb_Count := random(1, Neighborhoods_Counter)
+    Clip_Nb_Count := Random(1, Neighborhoods_Counter)
     //fmt.Println("Clip_Nb_Count =",Clip_Nb_Count)
 
     //............................................................

@@ -23,7 +23,7 @@ import (
 
 )
 //---------------------------------------------------------------
-func random(min, max int) int {
+func Random(min, max int) int {
 
     //s1 := rand.NewSource(time.Now().UnixNano())
     //r1 := rand.New(s1)
@@ -47,7 +47,7 @@ func GenAllFiles(byteValues []byte) {
     fmt.Printf("*** GenAllFiles project_name = %s\n", project_name)
 
     // var  myrand int
-    // myrand = random (1, 6)
+    // myrand = Random(1, 6)
     // fmt.Println (myrand)
 
     dbFileName, err := GetDbName(byteValues);  __err_panic(err) 

@@ -28,17 +28,7 @@ func Gen_Um_Bucket(byteValues  []byte,
                        bucket_Name string, 
                        data        map[string]map[string]string) error {
 
-    // var ds                    S.Digital_Signage_STC      
-    // var i_ID_Digital_Signage  int 
-    // var ID_Digital_Signage    string 
-    // 
-    // var ID_Owner              string 
-    // //var Owner_Name            string 
-    // 
-    // var CnCtNb                S.Neighborhoods_KEY
-    // 
-    // var  max_rand  int
-    // //var  temp_rand int
+
     var  nn        int
     var ID_User    string 
     var ID_Media    string 
@@ -141,26 +131,10 @@ func Gen_Um_Bucket(byteValues  []byte,
             if err != nil {
                 fmt.Println("There was an error:", err)
             }
-            //fmt.Println(  "MdVal =",MdVal)
-            // fmt.Println(  "MdVal.Type_Media =",MdVal.Type_Media)
-            // fmt.Println(  "MdVal.Slots      =",MdVal.Slots     )
-
-            //Media_Cost = random.randint(\
-            //    data['Base']['Clip_Budget_Min'],\
-            //    data['Base']['Clip_Budget_Max'],\
-            //    )*1000
-
-            // rand.Seed(int64(time.Now().Nanosecond()))
-            // //rand_Budget_Min := rand.Intn(Clip_Budget_Min)
-            // rand_Budget     := rand.Intn(Clip_Budget_Max)
-            // if rand_Budget < Clip_Budget_Min {
-            //     rand_Budget = Clip_Budget_Min
-            // }
-
-            //Media_Cost = strconv.Itoa(rand_Budget*1000)
 
 
-            Media_Cost = strconv.Itoa(random(Clip_Budget_Min, Clip_Budget_Max)*1000)
+
+            Media_Cost = strconv.Itoa(Random(Clip_Budget_Min, Clip_Budget_Max)*1000)
 
             um.UsMd.ID_User  = ID_User
             um.UsMd.ID_Media = ID_Media
@@ -184,11 +158,11 @@ func Gen_Um_Bucket(byteValues  []byte,
                 time.UTC,
                 )
 
-            //um.UsMdVl.Start_time  = t.Add(time.Hour * 24 * random(1,5))
-            //um.UsMdVl.End_time    = t.Add(time.Hour * 24 * random(6,10))
+            //um.UsMdVl.Start_time  = t.Add(time.Hour * 24 * Random(1,5))
+            //um.UsMdVl.End_time    = t.Add(time.Hour * 24 * Random(6,10))
 
-            t_Min := random(48,Time_Add_Hour_Min)
-            t_Max := random(Time_Add_Hour_Max - t_Min + 24, Time_Add_Hour_Max)
+            t_Min := Random(48,Time_Add_Hour_Min)
+            t_Max := Random(Time_Add_Hour_Max - t_Min + 24, Time_Add_Hour_Max)
 
             um.UsMdVl.Start_time  = t.Add(time.Hour * time.Duration(t_Min))
             um.UsMdVl.End_time    = t.Add(time.Hour * time.Duration(t_Max))

@@ -135,17 +135,17 @@ import (
     len_res_Price := len(res_Price)
     //fmt.Printf("len_res_Price = %d\n", len_res_Price)
 
-    All_Slot_Busy := random(0, 4)
+    All_Slot_Busy := Random(0, 4)
     //fmt.Println("All_Slot_Busy =",All_Slot_Busy)
 
 
-    iSlot_Busy_Counter := random(1, len_res_Price-1)
+    iSlot_Busy_Counter := Random(1, len_res_Price-1)
     //fmt.Println("***** iSlot_Busy_Counter =", iSlot_Busy_Counter)
 
     // if All_Slot_Busy == 1 {
     //     iCounter = Time_Interval_Counter
     // } else {
-    //     iCounter = random(1, Time_Interval_Counter)
+    //     iCounter = Random(1, Time_Interval_Counter)
     // }
 
     for i := 0; i < len_res_Price; i++ {

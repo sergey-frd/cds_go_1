@@ -56,14 +56,14 @@ import (
     Time_Interval_Counter := fastjson.GetInt(byteValues, "Base", "Time_Interval_Counter")
     //fmt.Println("Time_Interval_Counter =",Time_Interval_Counter)
 
-    Clip_4_ALL_Ti := random(0, 2)
+    Clip_4_ALL_Ti := Random(0, 2)
     //fmt.Println("Clip_4_ALL_Ti =",Clip_4_ALL_Ti)
 
 
     if Clip_4_ALL_Ti == 1 {
         iCounter = Time_Interval_Counter 
     } else {
-        iCounter = random(1, Time_Interval_Counter)
+        iCounter = Random(1, Time_Interval_Counter)
     }
 
     //fmt.Println("iCounter =",iCounter)

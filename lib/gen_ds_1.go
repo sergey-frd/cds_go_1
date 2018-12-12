@@ -111,9 +111,9 @@ func Gen_Ds_Bucket(byteValues  []byte,
 
             ds.CnCtNbDs.CnCtNb = CnCtNb
 
-            //max_rand = random (1,rand.Intn(d_Sign_Counter) )
+            //max_rand = Random(1,rand.Intn(d_Sign_Counter) )
     
-            //temp_rand = random (1, d_Sign_Counter)
+            //temp_rand = Random(1, d_Sign_Counter)
             //max_rand = temp_rand
 
 
@@ -129,7 +129,7 @@ func Gen_Ds_Bucket(byteValues  []byte,
 
                 //fmt.Println(  "nn =",nn)
 
-                // temp_rand = random (1, d_Sign_Counter)
+                // temp_rand = Random(1, d_Sign_Counter)
                 // fmt.Println(  "temp_rand =",temp_rand)
 
                 rand.Seed(int64(time.Now().Nanosecond()))

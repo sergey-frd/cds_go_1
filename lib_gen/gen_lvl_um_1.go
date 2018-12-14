@@ -42,7 +42,7 @@ func Gen_Lvl_Um(byteValues  []byte,
     var err         error
     //var total       float64
 
-    //var um   S.User_Media_STC
+    var um   S.User_Media_STC
     var ps   S.Um_NbDsTiSl_STC  // Payd_Slots
 
     var keys []string
@@ -51,23 +51,34 @@ func Gen_Lvl_Um(byteValues  []byte,
     } // for k, v
     sort.Strings(keys)  // or sort.Ints(keys), sort.Sort(...), etc., per <K>
     for _, k := range keys  {
+        v := data["User_Media"][k]
 
 
         //.................................................
         byt_k := []byte(k)
         //err := json.Unmarshal(byt_ds, &k_Ds)
         err = json.Unmarshal(byt_k, &ps.UmNbDsTiSl_Key.UsMd)
+        err = json.Unmarshal(byt_k, &um.UsMd)
         if err != nil {
             fmt.Println("There was an error:", err)
         }
 
+        byt_v := []byte(v)
+        err = json.Unmarshal(byt_v, &um.UsMdVl)
+        if err != nil {
+            fmt.Println("There was an error:", err)
+        }
+        //fmt.Println("um =", um)
+
+
         //fmt.Println("um =", um)
         fmt.Println("um ps =", ps)
-        err = Gen_Lvl_Ct(byteValues,data,ps,);  __err_panic(err)
+        ps.UmNbDsTiSl_Key.UsMd = um.UsMd
+        err = Gen_Lvl_Ct(byteValues,data,ps,um,);  __err_panic(err)
 
 
         //!!!!!!!!!!!!!!!!!!!!
-        //break
+        break
 
     }
 

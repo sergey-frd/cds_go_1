@@ -2,12 +2,16 @@ package lib
 
 import (   
     "fmt"
-	"github.com/boltdb/bolt"
+    "github.com/boltdb/bolt"
     "os" 
-	"errors"
-	"log"
+    "errors"
+    "log"
     "github.com/valyala/fastjson"
     "path/filepath"
+    "math"
+    "strconv"
+    "time"
+
     // "github.com/tealeg/xlsx"
 	// "io/ioutil"
 
@@ -18,7 +22,6 @@ import (
     //"encoding/json"
     //S "cds_go_1/config"
 
-    // "time"
     // "math/rand"
 
 )
@@ -337,3 +340,96 @@ func LoadDict_Dbg(byteValues []byte,
     return err
 
 }
+
+
+//------------------------------------------------------------------------------
+func Diff(a, b time.Time) (year, month, day, hour, min, sec int) {
+    if a.Location() != b.Location() {
+        b = b.In(a.Location())
+    }
+    if a.After(b) {
+        a, b = b, a
+    }
+    y1, M1, d1 := a.Date()
+    y2, M2, d2 := b.Date()
+
+    h1, m1, s1 := a.Clock()
+    h2, m2, s2 := b.Clock()
+
+    year = int(y2 - y1)
+    month = int(M2 - M1)
+    day = int(d2 - d1)
+    hour = int(h2 - h1)
+    min = int(m2 - m1)
+    sec = int(s2 - s1)
+
+    // Normalize negative values
+    if sec < 0 {
+        sec += 60
+        min--
+    }
+    if min < 0 {
+        min += 60
+        hour--
+    }
+    if hour < 0 {
+        hour += 24
+        day--
+    }
+    if day < 0 {
+        // days in month:
+        t := time.Date(y1, M1, 32, 0, 0, 0, 0, time.UTC)
+        day += 32 - t.Day()
+        month--
+    }
+    if month < 0 {
+        month += 12
+        year--
+    }
+
+    return
+}
+
+//------------------------------------------------------------------------------
+func Plural(count int, singular string) (result string) {
+        if (count == 1) || (count == 0) {
+         result = strconv.Itoa(count) + " " + singular + " "
+        } else {
+         result = strconv.Itoa(count) + " " + singular + "s "
+        }
+ return
+}
+
+func SecondsToHuman(input int) (result string) {
+        years := math.Floor(float64(input) / 60 / 60 / 24 / 7 / 30 / 12)
+        seconds := input % (60 * 60 * 24 * 7 * 30 * 12)
+        months := math.Floor(float64(seconds) / 60 / 60 / 24 / 7 / 30)
+        seconds = input % (60 * 60 * 24 * 7 * 30)
+        weeks := math.Floor(float64(seconds) / 60 / 60 / 24 / 7)
+        seconds = input % (60 * 60 * 24 * 7)
+        days := math.Floor(float64(seconds) / 60 / 60 / 24)
+        seconds = input % (60 * 60 * 24)
+        hours := math.Floor(float64(seconds) / 60 / 60)
+        seconds = input % (60 * 60)
+        minutes := math.Floor(float64(seconds) / 60)
+        seconds = input % 60
+
+        if years > 0 {
+                 result = Plural(int(years), "year") + Plural(int(months), "month") + Plural(int(weeks), "week") + Plural(int(days), "day") + Plural(int(hours), "hour") + Plural(int(minutes), "minute") + Plural(int(seconds), "second")
+        } else if months > 0 {
+                 result = Plural(int(months), "month") + Plural(int(weeks), "week") + Plural(int(days), "day") + Plural(int(hours), "hour") + Plural(int(minutes), "minute") + Plural(int(seconds), "second")
+        } else if weeks > 0 {
+                 result = Plural(int(weeks), "week") + Plural(int(days), "day") + Plural(int(hours), "hour") + Plural(int(minutes), "minute") + Plural(int(seconds), "second")
+        } else if days > 0 {
+                 result = Plural(int(days), "day") + Plural(int(hours), "hour") + Plural(int(minutes), "minute") + Plural(int(seconds), "second")
+        } else if hours > 0 {
+                 result = Plural(int(hours), "hour") + Plural(int(minutes), "minute") + Plural(int(seconds), "second")
+        } else if minutes > 0 {
+                 result = Plural(int(minutes), "minute") + Plural(int(seconds), "second")
+        } else {
+                 result = Plural(int(seconds), "second")
+        }
+
+ return
+}
+

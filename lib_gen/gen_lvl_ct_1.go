@@ -30,6 +30,7 @@ import (
 func Gen_Lvl_Ct(byteValues  []byte, 
     data       map[string]map[string]string,
     ps         S.Um_NbDsTiSl_STC,
+    um         S.User_Media_STC,
     ) error {
 
 
@@ -74,7 +75,7 @@ func Gen_Lvl_Ct(byteValues  []byte,
 
             //fmt.Println("um =", um)
             fmt.Println("  ct ps =", ps)
-            err = Gen_Lvl_Nb(byteValues,data,ps,);  __err_panic(err)
+            err = Gen_Lvl_Nb(byteValues,data,ps,um,);  __err_panic(err)
 
         } //if Clip_4_ALL_Country == 0 {
         //.................................................
@@ -82,7 +83,7 @@ func Gen_Lvl_Ct(byteValues  []byte,
 
 
         //!!!!!!!!!!!!!!!!!!!!
-        //break
+        break
 
     }
 

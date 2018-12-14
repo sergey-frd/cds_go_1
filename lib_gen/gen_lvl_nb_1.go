@@ -30,6 +30,7 @@ import (
 func Gen_Lvl_Nb(byteValues  []byte, 
     data       map[string]map[string]string,
     ps         S.Um_NbDsTiSl_STC,
+    um         S.User_Media_STC,
     ) error {
 
 
@@ -68,6 +69,7 @@ func Gen_Lvl_Nb(byteValues  []byte,
 
         //fmt.Println("um =", um)
         fmt.Println("    nb ps =", ps)
+        err = Gen_Lvl_Ds(byteValues,data,ps,um,);  __err_panic(err)
 
         if Clip_4_ALL_Nb == 1 {
             iCounter = Neighborhoods_Counter
@@ -81,7 +83,7 @@ func Gen_Lvl_Nb(byteValues  []byte,
 
 
         //!!!!!!!!!!!!!!!!!!!!
-        //break
+        break
 
     }
 

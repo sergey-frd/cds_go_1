@@ -28,7 +28,7 @@ if %cc% lss 10 set cc=0%cc%
 set DURATION=%hh%:%mm%:%ss%,%cc%
 
 echo          ---%2------------
-echo Start    :  %STARTTIME%
+echo Start    : %STARTTIME%
 echo Finish   : %ENDTIME%
 echo          ---------------
 echo Duration : %DURATION% 

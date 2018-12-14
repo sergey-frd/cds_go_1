@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-//    "fmt"
+    "fmt"
 ////    "log"
 ////	"sort"
 //    "github.com/valyala/fastjson"
@@ -16,7 +16,7 @@ import (
 //    "encoding/json"
 ////  //"encoding/gob"
 ////  
-////  "time"
+      "time"
 ////  "math/rand"
 //
 //    L "cds_go_1/lib"
@@ -30,9 +30,21 @@ import (
 func Gen_Lvl_Sl(byteValues  []byte, 
     data       map[string]map[string]string,
     ps         S.Um_NbDsTiSl_STC,
-    Ti         S.Time_Interval_STC,
+    um         S.User_Media_STC,
+    c_time     time.Time,
     )  (err error) {
 
+
+    p := fmt.Println
+
+    p(c_time.Year())
+    p(c_time.Month())
+    p(c_time.Day())
+    p(c_time.Hour())
+    p(c_time.Minute())
+    p(c_time.Second())
+    p(c_time.Nanosecond())
+    p(c_time.Location())
 
 //     var err         error
 //     //var total       float64

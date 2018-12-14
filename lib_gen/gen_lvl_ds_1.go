@@ -120,7 +120,9 @@ func Gen_Lvl_Ds(byteValues  []byte,
         iCounter = int(diff.Hours())
         p("2 iCounter =",iCounter)
 
+        n := 0
         for i := 0; i < iCounter; i++ {
+            n++
             c  = c.Add(time.Hour)
 
             //p(i,c)
@@ -128,8 +130,13 @@ func Gen_Lvl_Ds(byteValues  []byte,
                 p("break i =",i)
                 break
             } 
+            p("c =",c)
+            err = Gen_Lvl_Sl(byteValues,data,ps,um,c,);  __err_panic(err)
 
-
+            if n >=3 {
+                //!!!!!!!!!!!!!!!!!!!!
+                break
+            }
         } // for i
 
         p("3 c =",c)

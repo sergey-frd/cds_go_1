@@ -41,6 +41,7 @@ func Load_Xcls( byteValues []byte) {
     var nb   S.Neighborhoods_STC
     var md   S.Media_STC
     var ct   S.City_STC
+    //var pr   S.Price_STC
 
     var ID_Country         string
     //var ID_City            string
@@ -60,6 +61,8 @@ func Load_Xcls( byteValues []byte) {
     var key                string
     var val                string
 
+    var Index  string
+    var Price  string
 
     //project_name := fastjson.GetString(byteValues, "Base", "project_name")
     //fmt.Printf("project_name = %s\n", project_name)
@@ -259,7 +262,7 @@ func Load_Xcls( byteValues []byte) {
                             continue	
                         }
 
-                        md.ID_Media   = row.Cells[0].String()
+                        md.ID_Media       = row.Cells[0].String()
                         md.MdV.Type_Media = row.Cells[1].String()
                         md.MdV.Slots      = row.Cells[2].String()
      
@@ -273,7 +276,26 @@ func Load_Xcls( byteValues []byte) {
                     }
                 //................................................
 
+                case "Price":
 
+                    for index_Row, row := range sheet.Rows {
+
+                        if index_Row == 0 {
+                            continue	
+                        }
+
+                        Index  = row.Cells[0].String()
+                        Price  = row.Cells[1].String()
+
+                        key = Index
+                        val = Price
+
+                        err = b.Put([]byte(key), []byte(val))
+                        __err_panic(err)
+
+
+                    }
+                //................................................
 
                 } // switch sheet_Name {
             } // for _, sheet := range xlFile.Sheets

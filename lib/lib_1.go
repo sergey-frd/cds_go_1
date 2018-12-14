@@ -204,12 +204,9 @@ func LoadDict(byteValues []byte, data map[string]map[string]string) error {
 				for k, v := c.First(); k != nil; k, v = c.Next() {
 
     				data[sheet_Name][string(k[:])] = string(v[:])
-
-
 				}
 				return nil
 			})
-
 
             return nil
         })

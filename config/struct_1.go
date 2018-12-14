@@ -147,10 +147,17 @@ type City_STC   struct {
     City   string
 }
 
+
 //.............................
 type City_KEY   struct {
     ID_Country       string
     ID_City          string
+}
+
+//.............................
+type Price_STC   struct {
+    Index        string
+    Price        string
 }
 
 

@@ -141,7 +141,13 @@ func main() {
         //err = L.Print_DB_Bucket(byteValues, "User_Media");        __err_panic(err)
 
 
+        data["Free_Slots"] = make(map[string]string)
         err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
+
+        //p("data[Free_Slots] =", data["Free_Slots"])
+        err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
+        //err = L.Print_DB_Bucket(byteValues, "Free_Slots");             __err_panic(err)
+
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!
         return 
 

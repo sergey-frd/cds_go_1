@@ -13,7 +13,7 @@ import (
 ////  // "io/ioutil"
 ////  //"bytes"
 ////  //"runtime"
-//    "encoding/json"
+    "encoding/json"
 ////  //"encoding/gob"
 ////  
       "time"
@@ -73,9 +73,6 @@ func Gen_Lvl_Sl(byteValues  []byte,
     ps.UmNbDsTiSl_Key.NbDsTiSl_key.Month =int(c_time.Month()) 
     ps.UmNbDsTiSl_Key.NbDsTiSl_key.Day   =c_time.Day()   
     ps.UmNbDsTiSl_Key.NbDsTiSl_key.Hour  =c_time.Hour()  
-    
-
-
 
     Slots, _ := strconv.Atoi(Ti.TiVl.Slots)
     
@@ -97,6 +94,10 @@ func Gen_Lvl_Sl(byteValues  []byte,
 
         ps.Slot_Price  = price*DS_TI_Price 
         p("          sl ps =", ps)
+
+        enc_UmNbDsTiSl_Key, err := json.Marshal(ps.UmNbDsTiSl_Key); __err_panic(err)
+        data["Free_Slots"][string(enc_UmNbDsTiSl_Key)] = fmt.Sprintf("%f", ps.Slot_Price)  
+
     } // for i
 
 

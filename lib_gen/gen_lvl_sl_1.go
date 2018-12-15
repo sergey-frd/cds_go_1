@@ -37,7 +37,7 @@ func Gen_Lvl_Sl(byteValues  []byte,
     )  (err error) {
 
 
-    p := fmt.Println
+    //p := fmt.Println
 
     // p("c_time =",c_time)
     // 
@@ -93,7 +93,7 @@ func Gen_Lvl_Sl(byteValues  []byte,
         ps.UmNbDsTiSl_Key.NbDsTiSl_key.Index =i 
 
         ps.Slot_Price  = price*DS_TI_Price 
-        p("          sl ps =", ps)
+        //p("          sl ps =", ps)
 
         enc_UmNbDsTiSl_Key, err := json.Marshal(ps.UmNbDsTiSl_Key); __err_panic(err)
         data["Free_Slots"][string(enc_UmNbDsTiSl_Key)] = fmt.Sprintf("%f", ps.Slot_Price)  

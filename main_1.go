@@ -12,7 +12,7 @@ import (
 
     L "cds_go_1/lib"
     X "cds_go_1/lib_xcls"
-    A "cds_go_1/lib_alloc"
+//    A "cds_go_1/lib_alloc"
     G "cds_go_1/lib_gen"
 
     //"encoding/json"
@@ -149,7 +149,7 @@ func main() {
         //err = L.Print_DB_Bucket(byteValues, "Free_Slots");             __err_panic(err)
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        return 
+        //return 
 
 
         // L.Gen_UmNbDtTi_Bucket(byteValues, 
@@ -206,10 +206,10 @@ func main() {
         err = L.LoadDict2(byteValues, data, "Digital_Signage");   __err_panic(err)
         err = L.LoadDict2(byteValues, data, "User_Media"     );   __err_panic(err)
 
-        err = L.LoadDict2(byteValues, data, "Ow_Um"      ); __err_panic(err)          
-        err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  ); __err_panic(err)      
-        err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
-        err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
+        //err = L.LoadDict2(byteValues, data, "Ow_Um"      ); __err_panic(err)          
+        //err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  ); __err_panic(err)      
+        //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
+        //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
         err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
 
         //fmt.Println("main data[Ow_Um]       =", data["Ow_Um"]);       __err_panic(err)
@@ -217,9 +217,9 @@ func main() {
         //fmt.Println("main data[Ow_UmNbDsTi] =", data["Ow_UmNbDsTi"]); __err_panic(err)
         //fmt.Println("main data[Free_Slots]  =", data["Free_Slots"]);  __err_panic(err)
 
-        err = A.Alloc_Um(byteValues, 
-                         data ,
-            ); __err_panic(err) 
+        //err = A.Alloc_Um(byteValues, 
+        //                 data ,
+        //    ); __err_panic(err) 
 
 
 

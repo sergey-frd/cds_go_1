@@ -56,7 +56,7 @@ func Gen_Lvl_Ti(byteValues  []byte,
     ps.UmNbDsTiSl_Key.NbDsTiSl_key.NbDsTi_key.ID_Time_Interval = Ti.ID_Time_Interval
 
     //fmt.Println("        Ti Ti =", Ti)
-    fmt.Println("        Ti ps =", ps,Ti.TiVl)
+    //fmt.Println("        Ti ps =", ps,Ti.TiVl)
     err = Gen_Lvl_Sl(byteValues,data,ps,um,Ds,c_time,Ti);  __err_panic(err)
 
 

@@ -74,7 +74,7 @@ func Gen_Lvl_Ct(byteValues  []byte,
 
 
             //fmt.Println("um =", um)
-            fmt.Println("  ct ps =", ps)
+            //fmt.Println("  ct ps =", ps)
             err = Gen_Lvl_Nb(byteValues,data,ps,um,);  __err_panic(err)
 
         } //if Clip_4_ALL_Country == 0 {

@@ -22,7 +22,7 @@ import (
 //  
 //  "math/rand"
 
-    L "cds_go_1/lib"
+//    L "cds_go_1/lib"
     S "cds_go_1/config"
 
 )
@@ -80,9 +80,9 @@ func Gen_Lvl_Ds(byteValues  []byte,
         //fmt.Println("      um.UsMdVl.Start_time =", um.UsMdVl.Start_time)
         //fmt.Println("      um.UsMdVl.End_time   =", um.UsMdVl.End_time  )
 
-        year, month, day, hour, min, sec := L.Diff(um.UsMdVl.Start_time, um.UsMdVl.End_time)
-        fmt.Printf("      diff = %d years, %d months, %d days, %d hours, %d mins and %d seconds\n",
-            year, month, day, hour, min, sec)
+        //year, month, day, hour, min, sec := L.Diff(um.UsMdVl.Start_time, um.UsMdVl.End_time)
+        //fmt.Printf("      diff = %d years, %d months, %d days, %d hours, %d mins and %d seconds\n",
+        //    year, month, day, hour, min, sec)
         // err = Gen_Lvl_Ti(byteValues,data,ps,);  __err_panic(err)
 
         diff := um.UsMdVl.End_time.Sub(um.UsMdVl.Start_time)

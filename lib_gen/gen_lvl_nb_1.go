@@ -68,7 +68,7 @@ func Gen_Lvl_Nb(byteValues  []byte,
 
 
         //fmt.Println("um =", um)
-        fmt.Println("    nb ps =", ps)
+        //fmt.Println("    nb ps =", ps)
         err = Gen_Lvl_Ds(byteValues,data,ps,um,);  __err_panic(err)
 
         if Clip_4_ALL_Nb == 1 {

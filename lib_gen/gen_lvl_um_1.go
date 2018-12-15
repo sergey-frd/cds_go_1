@@ -72,7 +72,7 @@ func Gen_Lvl_Um(byteValues  []byte,
 
 
         //fmt.Println("um =", um)
-        fmt.Println("um ps =", ps)
+        //fmt.Println("um ps =", ps)
         ps.UmNbDsTiSl_Key.UsMd = um.UsMd
         err = Gen_Lvl_Ct(byteValues,data,ps,um,);  __err_panic(err)
 

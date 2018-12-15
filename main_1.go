@@ -146,15 +146,15 @@ func main() {
         return 
 
 
-        L.Gen_UmNbDtTi_Bucket(byteValues, 
-            data            ,
-            Ow_Um_Map       ,
-            Ow_UmNbDsTi_Map ,
-            Ow_UmNbDs_Map   ,
-            Payd_Slots_Map  ,
-            Free_Slots_Map  ,
-            )
-        __err_panic(err)
+        // L.Gen_UmNbDtTi_Bucket(byteValues, 
+        //     data            ,
+        //     Ow_Um_Map       ,
+        //     Ow_UmNbDsTi_Map ,
+        //     Ow_UmNbDs_Map   ,
+        //     Payd_Slots_Map  ,
+        //     Free_Slots_Map  ,
+        //     )
+        // __err_panic(err)
 
 
         // fmt.Println("main Ow_Um_Map =", Ow_Um_Map)

@@ -45,7 +45,11 @@ type NbDsTi_KEY   struct {
 //.............................
 type NbDsTiSl_KEY   struct {
     NbDsTi_key  NbDsTi_KEY
-    ID_Slot     string
+    Year  int           
+    Month int    
+    Day   int           
+    Hour  int           
+    Index int           
 }
 
 type NbDsTiSl_STC   struct {

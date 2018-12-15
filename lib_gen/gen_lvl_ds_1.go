@@ -37,7 +37,7 @@ func Gen_Lvl_Ds(byteValues  []byte,
     ) (err error) {
 
 
-    p := fmt.Println
+    //p := fmt.Println
     // var err         error
     //var total       float64
 
@@ -63,16 +63,22 @@ func Gen_Lvl_Ds(byteValues  []byte,
             continue
         }
 
+        ds_value:= data["Digital_Signage"][k]
+        byt_dsv := []byte(ds_value)
+        err = json.Unmarshal(byt_dsv, &Ds.DsVal)
+        if err != nil {
+            fmt.Println("There was an error:", err)
+        }
         nnn  += 1
 
-        //fmt.Println("um =", um)
 
         ps.UmNbDsTiSl_Key.NbDsTiSl_key.NbDsTi_key.CnCtNbDs = Ds.CnCtNbDs
 
-        fmt.Println("      ds ps =", ps)
-        fmt.Println("      um.UsMdVl            =", um.UsMdVl)
-        fmt.Println("      um.UsMdVl.Start_time =", um.UsMdVl.Start_time)
-        fmt.Println("      um.UsMdVl.End_time   =", um.UsMdVl.End_time  )
+        //fmt.Println("      Ds =", Ds)
+        //fmt.Println("      ds ps =", ps)
+        //fmt.Println("      um.UsMdVl            =", um.UsMdVl)
+        //fmt.Println("      um.UsMdVl.Start_time =", um.UsMdVl.Start_time)
+        //fmt.Println("      um.UsMdVl.End_time   =", um.UsMdVl.End_time  )
 
         year, month, day, hour, min, sec := L.Diff(um.UsMdVl.Start_time, um.UsMdVl.End_time)
         fmt.Printf("      diff = %d years, %d months, %d days, %d hours, %d mins and %d seconds\n",
@@ -80,11 +86,10 @@ func Gen_Lvl_Ds(byteValues  []byte,
         // err = Gen_Lvl_Ti(byteValues,data,ps,);  __err_panic(err)
 
         diff := um.UsMdVl.End_time.Sub(um.UsMdVl.Start_time)
-        p("diff =",diff)
-
-        p("diff.Hours())        =",diff.Hours())
-        p("diff.Minutes())      =",diff.Minutes())
-        p("diff.Seconds())      =",diff.Seconds())
+        //p("diff =",diff)
+        //p("diff.Hours())        =",diff.Hours())
+        //p("diff.Minutes())      =",diff.Minutes())
+        //p("diff.Seconds())      =",diff.Seconds())
 
         t := time.Date(
             um.UsMdVl.Start_time.Year() ,
@@ -111,14 +116,14 @@ func Gen_Lvl_Ds(byteValues  []byte,
 
         e  = e.Add(time.Hour * 24)
         diff = e.Sub(t)
-        p("2 t =",t)
-        p("2 e =",e)
-        p("2 diff =",diff)
-        p("2 diff.Hours())        =",diff.Hours())
+        //p("2 t =",t)
+        //p("2 e =",e)
+        //p("2 diff =",diff)
+        //p("2 diff.Hours())        =",diff.Hours())
         
         c := t
         iCounter = int(diff.Hours())
-        p("2 iCounter =",iCounter)
+        //p("2 iCounter =",iCounter)
 
         n := 0
         for i := 0; i < iCounter; i++ {
@@ -127,19 +132,20 @@ func Gen_Lvl_Ds(byteValues  []byte,
 
             //p(i,c)
             if um.UsMdVl.End_time.Equal(c) {
-                p("break i =",i)
+                //p("break i =",i)
                 break
             } 
-            p("c =",c)
-            err = Gen_Lvl_Sl(byteValues,data,ps,um,c,);  __err_panic(err)
+            //p("c =",c)
+            //err = Gen_Lvl_Sl(byteValues,data,ps,um,c,);  __err_panic(err)
+            err = Gen_Lvl_Ti(byteValues,data,ps,um,Ds,c,);  __err_panic(err)
 
-            if n >=3 {
+            if n >= 5 {
                 //!!!!!!!!!!!!!!!!!!!!
                 break
             }
         } // for i
 
-        p("3 c =",c)
+        //p("3 c =",c)
 
 
         //!!!!!!!!!!!!!!!!!!!!

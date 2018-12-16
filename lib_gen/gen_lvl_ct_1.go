@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-    "fmt"
+//    "fmt"
 //    "log"
 	"sort"
     "github.com/valyala/fastjson"
@@ -51,15 +51,17 @@ func Gen_Lvl_Ct(byteValues  []byte,
         keys = append(keys, k)
     } // for k, v
     sort.Strings(keys)  // or sort.Ints(keys), sort.Sort(...), etc., per <K>
+    n := 0
     for _, k := range keys  {
+        n++
 
         if Clip_4_ALL_Country == 0 {
 
             byt_k := []byte(k)
-            err = json.Unmarshal(byt_k, &ct.CnCt)
-            if err != nil {
-                fmt.Println("There was an error:", err)
-            }
+            err = json.Unmarshal(byt_k, &ct.CnCt);  __err_panic(err)
+            //if err != nil {
+            //    fmt.Println("There was an error:", err)
+            //}
 
             if Clip_Code_Country != ct.CnCt.ID_Country {
                 continue
@@ -83,7 +85,8 @@ func Gen_Lvl_Ct(byteValues  []byte,
 
 
         //!!!!!!!!!!!!!!!!!!!!
-        break
+        //if n >=5 { break }
+
 
     }
 

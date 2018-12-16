@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-    "fmt"
+//    "fmt"
 
 //        "math"
 //        "strconv"
@@ -54,10 +54,8 @@ func Gen_Lvl_Ds(byteValues  []byte,
     for _, k := range keys  {
 
         byt_k := []byte(k)
-        err = json.Unmarshal(byt_k, &Ds.CnCtNbDs)
-        if err != nil {
-            fmt.Println("There was an error:", err)
-        }
+        err = json.Unmarshal(byt_k, &Ds.CnCtNbDs);  __err_panic(err)
+
 
         if Ds.CnCtNbDs.CnCtNb != ps.UmNbDsTiSl_Key.NbDsTiSl_key.NbDsTi_key.CnCtNbDs.CnCtNb {
             continue
@@ -65,10 +63,8 @@ func Gen_Lvl_Ds(byteValues  []byte,
 
         ds_value:= data["Digital_Signage"][k]
         byt_dsv := []byte(ds_value)
-        err = json.Unmarshal(byt_dsv, &Ds.DsVal)
-        if err != nil {
-            fmt.Println("There was an error:", err)
-        }
+        err = json.Unmarshal(byt_dsv, &Ds.DsVal);  __err_panic(err)
+
         nnn  += 1
 
 
@@ -139,17 +135,17 @@ func Gen_Lvl_Ds(byteValues  []byte,
             //err = Gen_Lvl_Sl(byteValues,data,ps,um,c,);  __err_panic(err)
             err = Gen_Lvl_Ti(byteValues,data,ps,um,Ds,c,);  __err_panic(err)
 
-            if n >= 5 {
-                //!!!!!!!!!!!!!!!!!!!!
-                break
-            }
+            //    //!!!!!!!!!!!!!!!!!!!!
+
         } // for i
 
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //if nnn >=5 { break }
         //p("3 c =",c)
 
 
         //!!!!!!!!!!!!!!!!!!!!
-        break
+        //break
 
     }
 

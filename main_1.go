@@ -14,6 +14,7 @@ import (
     X "cds_go_1/lib_xcls"
 //    A "cds_go_1/lib_alloc"
     G "cds_go_1/lib_gen"
+    I "cds_go_1/lib_init"
 
     //"encoding/json"
     //"encoding/gob"
@@ -52,11 +53,11 @@ func main() {
 
 
     var data            = map[string]map[string]string{}
-    var Ow_Um_Map       = make(map[string]float64)
-    var Ow_UmNbDsTi_Map = make(map[string]float64)
-    var Ow_UmNbDs_Map   = make(map[string]float64)
-    var Payd_Slots_Map  = make(map[string]float64)
-    var Free_Slots_Map  = make(map[string]float64)
+    //var Ow_Um_Map       = make(map[string]float64)
+    //var Ow_UmNbDsTi_Map = make(map[string]float64)
+    //var Ow_UmNbDs_Map   = make(map[string]float64)
+    //var Payd_Slots_Map  = make(map[string]float64)
+    //var Free_Slots_Map  = make(map[string]float64)
 
 
     proj_dir, err := os.Getwd();  __err_panic(err) 
@@ -92,7 +93,9 @@ func main() {
     //L.DemoGenDB(byteValues)
 
     //------------------------------------------------------------------------------
-    if fastjson.GetString(byteValues, "Base", "CASE_XCLS_2_DB") == "Y" {
+    CASE_XCLS_2_DB := fastjson.GetString(byteValues, "Base", "CASE_XCLS_2_DB")
+    fmt.Printf("CASE_XCLS_2_DB = %s\n", CASE_XCLS_2_DB)
+    if CASE_XCLS_2_DB == "Y" {
         //fmt.Println("call X.Demo_Xcls(jsonFilePath) START")
         // X.Load_Xcls(proj_dir, byteValues)
         X.Load_Xcls( byteValues)
@@ -128,9 +131,11 @@ func main() {
         //L.GenAllFiles(byteValues)
 
         //.................................................
+        p("CASE_GEN_ALL_FILES Digital_Signage")
         err = L.Gen_Ds_Bucket(byteValues, "Digital_Signage",data); __err_panic(err)
         err = L.LoadDict2(byteValues, data, "Digital_Signage");    __err_panic(err)
 
+        p("CASE_GEN_ALL_FILES User_Media")
         err = L.Gen_Um_Bucket(byteValues, "User_Media", data);     __err_panic(err)
         err = L.LoadDict2(    byteValues, data, "User_Media");     __err_panic(err)
 
@@ -141,54 +146,64 @@ func main() {
         //err = L.Print_DB_Bucket(byteValues, "User_Media");        __err_panic(err)
 
 
-        data["Free_Slots"] = make(map[string]string)
+        //data["Ow_Um"]       = make(map[string]string)
+        //data["Ow_UmNbDs"]   = make(map[string]string)
+        //data["Ow_UmNbDsTi"] = make(map[string]string)
+        //data["Payd_Slots"]  = make(map[string]string)
+        data["Free_Slots"]  = make(map[string]string)
+
+        p("CASE_GEN_ALL_FILES Gen_Lvl_Um")
         err = G.Gen_Lvl_Um(byteValues,data,);  __err_panic(err)
 
+        p("CASE_GEN_ALL_FILES Save_Data_Map")
         //p("data[Free_Slots] =", data["Free_Slots"])
         err = L.Save_Data_Map(byteValues, "Free_Slots"  , data ); __err_panic(err)
+
+        p("CASE_GEN_ALL_FILES LoadDict2")
+        err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
         //err = L.Print_DB_Bucket(byteValues, "Free_Slots");             __err_panic(err)
 
         //!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //return 
 
 
-        // L.Gen_UmNbDtTi_Bucket(byteValues, 
-        //     data            ,
-        //     Ow_Um_Map       ,
-        //     Ow_UmNbDsTi_Map ,
-        //     Ow_UmNbDs_Map   ,
-        //     Payd_Slots_Map  ,
-        //     Free_Slots_Map  ,
-        //     )
-        // __err_panic(err)
-
-
-        // fmt.Println("main Ow_Um_Map =", Ow_Um_Map)
-        // fmt.Println("main Ow_UmNbDs_Map =", Ow_UmNbDs_Map)
-        // fmt.Println("main Ow_UmNbDsTi_Map =", Ow_UmNbDsTi_Map)
-
-        // fmt.Println("main Payd_Slots_Map =", Payd_Slots_Map)
-
-
-        // for Ow_UmNbDs_Map_Key, v := range Ow_UmNbDs_Map {
-        //     fmt.Println("main Ow_UmNbDs_Map_Key =", Ow_UmNbDs_Map_Key)
-        //     fmt.Println("main v =", v)
-        // } // for Ow_UmNbDs_Map_Key
-
-
-        err = L.Save_Map(byteValues, "Ow_Um"       , Ow_Um_Map      ); __err_panic(err)
-        err = L.Save_Map(byteValues, "Ow_UmNbDs"   , Ow_UmNbDs_Map  ); __err_panic(err)
-        err = L.Save_Map(byteValues, "Ow_UmNbDsTi" , Ow_UmNbDsTi_Map); __err_panic(err)
-        err = L.Save_Map(byteValues, "Payd_Slots"  , Payd_Slots_Map ); __err_panic(err)
-        err = L.Save_Map(byteValues, "Free_Slots"  , Free_Slots_Map ); __err_panic(err)
-
-                  
-        //err = L.LoadDict_Dbg(byteValues, data, "Ow_Um")          
-        err = L.LoadDict2(byteValues, data, "Ow_Um"      );  __err_panic(err)          
-        err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  );  __err_panic(err)      
-        err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi");  __err_panic(err)   
-        err = L.LoadDict2(byteValues, data, "Payd_Slots" );  __err_panic(err)     
-        err = L.LoadDict2(byteValues, data, "Free_Slots" );  __err_panic(err)     
+        // // L.Gen_UmNbDtTi_Bucket(byteValues, 
+        // //     data            ,
+        // //     Ow_Um_Map       ,
+        // //     Ow_UmNbDsTi_Map ,
+        // //     Ow_UmNbDs_Map   ,
+        // //     Payd_Slots_Map  ,
+        // //     Free_Slots_Map  ,
+        // //     )
+        // // __err_panic(err)
+        // 
+        // 
+        // // fmt.Println("main Ow_Um_Map =", Ow_Um_Map)
+        // // fmt.Println("main Ow_UmNbDs_Map =", Ow_UmNbDs_Map)
+        // // fmt.Println("main Ow_UmNbDsTi_Map =", Ow_UmNbDsTi_Map)
+        // 
+        // // fmt.Println("main Payd_Slots_Map =", Payd_Slots_Map)
+        // 
+        // 
+        // // for Ow_UmNbDs_Map_Key, v := range Ow_UmNbDs_Map {
+        // //     fmt.Println("main Ow_UmNbDs_Map_Key =", Ow_UmNbDs_Map_Key)
+        // //     fmt.Println("main v =", v)
+        // // } // for Ow_UmNbDs_Map_Key
+        // 
+        // 
+        // err = L.Save_Map(byteValues, "Ow_Um"       , Ow_Um_Map      ); __err_panic(err)
+        // err = L.Save_Map(byteValues, "Ow_UmNbDs"   , Ow_UmNbDs_Map  ); __err_panic(err)
+        // err = L.Save_Map(byteValues, "Ow_UmNbDsTi" , Ow_UmNbDsTi_Map); __err_panic(err)
+        // err = L.Save_Map(byteValues, "Payd_Slots"  , Payd_Slots_Map ); __err_panic(err)
+        // err = L.Save_Map(byteValues, "Free_Slots"  , Free_Slots_Map ); __err_panic(err)
+        // 
+        //           
+        // //err = L.LoadDict_Dbg(byteValues, data, "Ow_Um")          
+        // err = L.LoadDict2(byteValues, data, "Ow_Um"      );  __err_panic(err)          
+        // err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  );  __err_panic(err)      
+        // err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi");  __err_panic(err)   
+        // err = L.LoadDict2(byteValues, data, "Payd_Slots" );  __err_panic(err)     
+        // err = L.LoadDict2(byteValues, data, "Free_Slots" );  __err_panic(err)     
 
         // fmt.Println("main data[Ow_Um]       =", data["Ow_Um"]);       __err_panic(err)
         // fmt.Println("main data[Ow_UmNbDs]   =", data["Ow_UmNbDs"]);   __err_panic(err)
@@ -197,7 +212,34 @@ func main() {
 
     } // if CASE_GEN_ALL_FILES == "Y" {
 
+
     //------------------------------------------------------------------------------
+    CASE_INIT := fastjson.GetString(byteValues, "Base", "CASE_INIT")
+    fmt.Printf("CASE_INIT = %s\n", CASE_INIT)
+    if CASE_INIT == "Y" {
+
+        err = L.LoadDict2(byteValues, data, "Digital_Signage");   __err_panic(err)
+        err = L.LoadDict2(byteValues, data, "User_Media"     );   __err_panic(err)
+
+        //err = L.LoadDict2(byteValues, data, "Ow_Um"      ); __err_panic(err)          
+        //err = L.LoadDict2(byteValues, data, "Ow_UmNbDs"  ); __err_panic(err)      
+        //err = L.LoadDict2(byteValues, data, "Ow_UmNbDsTi"); __err_panic(err)   
+        //err = L.LoadDict2(byteValues, data, "Payd_Slots" ); __err_panic(err)     
+        err = L.LoadDict2(byteValues, data, "Free_Slots" ); __err_panic(err)     
+
+
+
+        TotalDict := make(map[string]map[string]float64) 
+        TotalDict["Ow_Day"]    = make(map[string]float64)
+        TotalDict["Ow_Day_Ds"] = make(map[string]float64)
+
+        err = I.Init_Um(byteValues,data,TotalDict,);  __err_panic(err)
+
+
+    } // if CASE_INIT == "Y" {
+
+    //------------------------------------------------------------------------------
+
     CASE_UM_ALLOCATION := fastjson.GetString(byteValues, "Base", "CASE_UM_ALLOCATION")
     fmt.Printf("CASE_UM_ALLOCATION = %s\n", CASE_UM_ALLOCATION)
 

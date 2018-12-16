@@ -1,7 +1,7 @@
 package lib_gen
 
 import (   
-    "fmt"
+//    "fmt"
 //    "log"
 	"sort"
     "github.com/valyala/fastjson"
@@ -54,10 +54,10 @@ func Gen_Lvl_Nb(byteValues  []byte,
     for _, k := range keys  {
 
         byt_k := []byte(k)
-        err = json.Unmarshal(byt_k,  &Nb.CnCtNb)
-        if err != nil {
-            fmt.Println("There was an error:", err)
-        }
+        err = json.Unmarshal(byt_k,  &Nb.CnCtNb);  __err_panic(err)
+        // if err != nil {
+        //     fmt.Println("There was an error:", err)
+        // }
 
         if Nb.CnCtNb.CnCt != ps.UmNbDsTiSl_Key.NbDsTiSl_key.NbDsTi_key.CnCtNbDs.CnCtNb.CnCt {
             continue
@@ -83,7 +83,7 @@ func Gen_Lvl_Nb(byteValues  []byte,
 
 
         //!!!!!!!!!!!!!!!!!!!!
-        break
+        //break
 
     }
 

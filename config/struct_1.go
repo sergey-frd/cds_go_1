@@ -5,6 +5,37 @@ import (
 )
 
 //.............................
+type Ow_Day_Ds_KEY   struct {
+    Ymd_key   Ymd_KEY 
+    CnCtNbDs  Digital_Signage_KEY
+}
+
+type Ow_Day_Ds_STC   struct {
+    Ow_day_ds_key Ow_Day_Ds_KEY
+    Total_Cost    float64
+}
+
+//.............................
+type Ymd_KEY   struct {
+    Year       int           
+    Month      int    
+    Day        int 
+}
+
+//.............................
+type Ow_Day_KEY struct {
+    Ymd_key     Ymd_KEY 
+    ID_Owner    string
+}
+
+type Ow_Day_STC   struct {
+    Ow_day_key          Ow_Day_KEY
+    Total_Cost          float64
+}
+
+//.............................
+//.............................
+//.............................
 type Ow_Um_KEY   struct {
     UsMd                User_Media_KEY
     ID_Owner            string
